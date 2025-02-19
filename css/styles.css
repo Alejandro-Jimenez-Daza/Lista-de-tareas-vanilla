@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* estas variables las cree para referenciarlas mas facilmente en estilos en comun, como los botones, y no repetir codigo */
+:root {
+    --color-primario: #3182ed;
+    --color-secundario: #4f4f4f;
+    --color-borde: #d1d1d1;
+    --color-editar: #ffd12c;
+    --color-eliminar: #ff4949;
+    --color-completar: #33d692;
+    --bg-color: #e6e6e6;
+    --color-blanco: #fff;
+    --border-radius: 0.4em;
+    --color-negro: #000000;
+    --transition: color 0.1s, background-color 0.2s ease-in-out;
+
+}
+
+
+/* aca le coloco una fuente de google fonts adecuada para la web y comoda de ver*/
+* {
+    font-family: "Poppins", serif;
+}
+
+
+/* cambio el color del titulo */
+.title {
+    color: rgb(46, 46, 46);
+}
+
+.contenedor-tabla {
+    margin-top: 5rem;
+}
+
+
+/* en esta parte modifico el tamaño de los iconos, tamaño del contenedor, alineacion y demas */
+.fa-solid {
+    font-size: 22px;
+    margin: 10px;
+    padding: 0;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10%;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* aca le aplico animaciones a los botones y sus respectivos colores segun el boton, borde y demas cosas */
+
+
+/* btn de informacion */
+.fa-plus {
+    color: var(--color-borde);
+    background-color: var(--color-blanco);
+}
+
+.fa-plus:hover {
+    background-color: var(--color-borde);
+    color: var(--color-blanco);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+
+/* btn editar */
+.fa-pencil {
+    color: var(--color-negro);
+    background-color: var(--color-editar);
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.fa-pencil:hover {
+    color: var(--color-editar);
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-editar);
+    transition: var(--transition);
+    cursor: pointer;
+
+}
+
+
+/* btn eliminar */
+.fa-xmark {
+    color: var(--color-blanco);
+    background-color: var(--color-eliminar);
+    border: none;
+
+    margin-left: 4rem;
+}
+
+.fa-xmark:hover {
+    color: var(--color-eliminar);
+    background-color: var(--color-blanco);
+    border: var(--color-eliminar);
+    border: 1px solid var(--color-eliminar);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+
+/* btn marcar completo */
+.fa-check {
+    color: var(--color-blanco);
+    background-color: var(--color-completar);
+    border: none;
+}
+
+.fa-check:hover {
+    color: var(--color-completar);
+    background-color: var(--color-blanco);
+    border: var(--color-completar);
+    border: 1px solid var(--color-completar);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+
+/* btn agregar */
+.btn-agregar {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    font-size: 14px;
+    width: 175px;
+    height: 43px;
+    border: 1px solid #1e90ff;
+    margin-left: 7.3em;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.btn-agregar:hover {
+    color: var(--color-primario);
+    border-radius: 7px;
+    background-color: var(--color-blanco);
+    transition: var(--transition);
+}
+
+
+/* aca aplico estilos al input del formulario para ingresar tareas, bordes, colores, hover que es para que el disenno se modifique al poner el cursor encima */
+.title,
+.contenedor-formulario,
+.contenedor-tabla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-formulario {
+    padding: 20px;
+}
+
+.inserta-tarea {
+    padding-left: 15px;
+    font-size: 14px;
+    border: 0.5px solid rgb(209, 209, 209);
+    border-radius: 5px;
+    width: 360px;
+    height: 40px;
+    outline: none;
+}
+
+.inserta-tarea:focus {
+    border: .5px solid var(--color-primario);
+}
+
+
+
+
+
+/* modifico el modal que se abre al darle el boton de editar*/
+
+
+/* Modal con fondo oscuro semi-transparente */
+#modal-editar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal-contenido {
+    text-align: center;
+    background: var(--color-completar);
+    padding: 2em;
+    width: 90%;
+    max-width: 450px;
+    /* Limitar el ancho */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+    /* Animación de entrada */
+}
+
+/* titulo del modal */
+#title-modal {
+    color: var(--color-secundario);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/*  input de edicion */
+#editar-tarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+    outline: none;
+    font-size: 1rem;
+    transition: border 0.3s;
+    box-sizing: border-box;
+    /* Evita desbordamientos */
+}
+
+/* Enfocar el input */
+#editar-tarea:focus {
+    border: 1px solid var(--color-primario);
+    box-shadow: 0 0 8px rgba(91, 155, 238, 0.5);
+}
+
+/* botones del modal */
+
+.modal-botones {
+    display: flex;
+    justify-content: space-between;
+    /* Alinea los botones */
+    margin-top: 2rem;
+}
+
+.modal-botones button {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+
+/* Botón Guardar */
+#guardar-cambios {
+    color: var(--color-blanco);
+    background: var(--color-primario);
+    margin-right: 1rem;
+}
+
+#guardar-cambios:hover {
+    background: #5b9bee;
+    box-shadow: 0 4px 12px rgba(91, 155, 238, 0.4);
+}
+
+/* Botón Cancelar */
+#cerrar-modal {
+    color: var(--color-eliminar);
+    background: var(--color-blanco);
+    border: 1px solid var(--color-eliminar);
+}
+
+#cerrar-modal:hover {
+    background: #ffecec;
+    border-color: #dd1919;
+}
+
+
+/* ANIMACIÓN DE ENTRADA */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+/* Aca aplico media querys para que sea responsive en celulares */
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 480px) {
+    .modal-contenido {
+        width: 100%;
+        padding: 1.5em;
+    }
+
+    .modal-botones {
+        flex-direction: column;
+        /* Botones apilados */
+    }
+
+    .modal-botones button {
+        margin-bottom: 1rem;
+        /* Espacio entre botones */
+    }
+}
+
+
+hr {
+    height: 0.5px;
+    /* Grosor de la línea */
+    background-color: var(--color-borde);
+    /* Color de la línea */
+    border: none;
+    /* Elimina el borde */
+    outline: none;
+}
+
+
+/* Media query para pantallas pequeñas  */
+@media (max-width: 768px) {
+    .contenedor-tabla table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        /* Desplazamiento horizontal si es necesario */
+    }
+
+    .contenedor-tabla th,
+    .contenedor-tabla td {
+        padding: 8px;
+        /* Ajusta el espacio */
+        text-align: center;
+        white-space: nowrap;
+        /* Evita que el contenido se divida en varias líneas */
+    }
+
+    .fa-solid {
+        width: 36px;
+        /* Ajusta el tamaño del botón */
+        height: 36px;
+        font-size: 18px;
+        /* Reduce el tamaño del ícono */
+        margin: 5px;
+        /* Espaciado más pequeño */
+    }
+
+    .fa-xmark {
+        margin-left: 0;
+        /* Elimina el margen izquierdo para evitar el desorden */
+    }
+}

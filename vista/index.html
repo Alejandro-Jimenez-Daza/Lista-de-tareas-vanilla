@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- en este archivo creo el esqueleto de la pagina, el formulario, botones, inputs, y demas que van a permitir manipular la pagina luego con javascript -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tareas</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <div class="contenedor-principal">
+
+        <div class="title">
+            <h1 class="title">Lista de tareas</h1>
+        </div>
+
+
+        <div class="contenedor-formulario">
+
+            <form id="form-lista-tareas">
+
+                <div class="entrada-de-tareas">
+                    <input type="text" placeholder="Crear contenido del blog" class="inserta-tarea" id="input-tarea"
+                        required>
+                    <input type="submit" value="Agregar" class="btn-agregar" id="btn-agregar-tarea">
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <div class="contenedor-tabla">
+
+            <table>
+                <tr>
+                    <th>Lista</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr>
+                    <td id="tarea-mas"><i class="fa-solid fa-plus"></i></td>
+                    <td><i class="fa-solid fa-xmark"></i></td>
+
+                    <!-- Botón de editar (con data-id para el ID de la tarea) -->
+                    <td id="td-editar">
+                        <i class="fa-solid fa-pencil btn-editar" data-id="1"></i>
+                    </td>
+
+                    <td><i class="fa-solid fa-check"></i></td>
+                </tr>
+            </table>
+
+        </div>
+
+
+
+        <!-- Modal de edición, para que se abra luego de que presionemos el td con icono de lapiz (editar tarea) -->
+        <div id="modal-editar" class="modal">
+
+            <div class="modal-contenido">
+                <h2 id="title-modal">Editar Tarea</h2>
+
+                <label for="editar-tarea" id="tarea-text">Tarea:</label>
+                <input type="text" id="editar-tarea" />
+
+                <!-- Input oculto para almacenar el ID de la tarea -->
+                <input type="hidden" id="editar-tarea-id" />
+
+                <div class="modal-botones">
+                    <button id="guardar-cambios">Guardar cambios</button>
+                    <br>
+                    <button id="cerrar-modal">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- este estilo lo puse aca debido a que referenciadolo en el archivo styles.css no funciona -->
+        <style>
+            #modal-editar {
+                display: none;
+                /* Oculto por defecto */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                /* Fondo oscuro semitransparente */
+                justify-content: center;
+                align-items: center;
+            }
+
+            .modal-contenido {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+            }
+        </style>
+    </div>
+
+
+</body>
+
+<!-- referencio el javascript que contiene la logica, donde se realizan los fetch -->
+<script src="../js/index.js"></script>
+
+</html>
